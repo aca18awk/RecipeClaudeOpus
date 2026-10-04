@@ -1,0 +1,371 @@
+{
+  "recipes": [
+    {
+      "id": "shakshuka",
+      "title": "Shakshuka",
+      "description": "Eggs gently poached in a spiced tomato and pepper sauce. Perfect for a lazy brunch.",
+      "image": "assets/images/recipes/shakshuka.jpeg",
+      "altText": "Cast-iron pan of shakshuka with four soft eggs in red tomato sauce, topped with chopped parsley",
+      "cookingTimeMinutes": 25,
+      "difficulty": "easy",
+      "vegetarian": true,
+      "featured": true,
+      "servings": 2,
+      "video": null,
+      "ingredients": [
+        { "name": "olive oil", "quantity": 2, "unit": "tbsp" },
+        { "name": "onion, diced", "quantity": 1, "unit": null },
+        { "name": "red pepper, sliced", "quantity": 1, "unit": null },
+        { "name": "garlic cloves, crushed", "quantity": 2, "unit": null },
+        { "name": "ground cumin", "quantity": 1, "unit": "tsp" },
+        { "name": "smoked paprika", "quantity": 1, "unit": "tsp" },
+        { "name": "chopped tomatoes", "quantity": 400, "unit": "g" },
+        { "name": "eggs", "quantity": 4, "unit": null },
+        { "name": "fresh parsley", "quantity": 10, "unit": "g" }
+      ],
+      "steps": [
+        {
+          "text": "Heat the olive oil in a frying pan over a medium heat. Add the onion and pepper and cook until soft.",
+          "timerSeconds": 480
+        },
+        {
+          "text": "Stir in the garlic, cumin and paprika and cook for 1 minute until fragrant.",
+          "timerSeconds": 60
+        },
+        {
+          "text": "Pour in the chopped tomatoes, season and simmer until slightly thickened.",
+          "timerSeconds": 600
+        },
+        {
+          "text": "Make four wells in the sauce and crack an egg into each. Cover and cook until the whites are set.",
+          "timerSeconds": 360
+        },
+        {
+          "text": "Scatter over the parsley and serve straight from the pan with crusty bread.",
+          "timerSeconds": null
+        }
+      ]
+    },
+    {
+      "id": "pierogi-ruskie",
+      "title": "Pierogi Ruskie",
+      "description": "Polish dumplings filled with potato, twaróg cheese and fried onion. A weekend project worth every fold.",
+      "image": "assets/images/recipes/pierogi-ruskie.jpeg",
+      "altText": "Plate of golden half-moon dumplings topped with crispy fried onions and a spoonful of sour cream",
+      "cookingTimeMinutes": 90,
+      "difficulty": "hard",
+      "vegetarian": true,
+      "featured": true,
+      "servings": 4,
+      "video": {
+        "file": "assets/videos/folding-pierogi.mp4",
+        "title": "Video by Spicewalla on how to fold and seal pierogi",
+        "captions": "assets/videos/folding-pierogi.vtt"
+      },
+      "ingredients": [
+        { "name": "plain flour", "quantity": 500, "unit": "g" },
+        { "name": "warm water", "quantity": 250, "unit": "ml" },
+        { "name": "vegetable oil", "quantity": 2, "unit": "tbsp" },
+        { "name": "floury potatoes", "quantity": 600, "unit": "g" },
+        { "name": "twaróg (or ricotta)", "quantity": 250, "unit": "g" },
+        { "name": "onions, finely chopped", "quantity": 2, "unit": null },
+        { "name": "butter", "quantity": 30, "unit": "g" },
+        { "name": "salt", "quantity": 1, "unit": "tsp" },
+        { "name": "sour cream, to serve", "quantity": 4, "unit": "tbsp" }
+      ],
+      "steps": [
+        {
+          "text": "Peel the potatoes, cut into chunks and boil in salted water until tender.",
+          "timerSeconds": 1200
+        },
+        {
+          "text": "Fry the onions in the butter until deep golden. Set half aside for serving.",
+          "timerSeconds": 900
+        },
+        {
+          "text": "Mash the potatoes with the twaróg, half the onions and the salt. Leave to cool.",
+          "timerSeconds": null
+        },
+        {
+          "text": "Mix the flour, warm water and oil into a smooth dough. Cover and rest.",
+          "timerSeconds": 1800
+        },
+        {
+          "text": "Roll the dough thinly, cut out circles, add a spoonful of filling and pinch the edges to seal.",
+          "timerSeconds": null
+        },
+        {
+          "text": "Boil the pierogi in batches until they float, then cook for 2 more minutes.",
+          "timerSeconds": 120
+        },
+        {
+          "text": "Serve topped with the reserved onions and sour cream.",
+          "timerSeconds": null
+        }
+      ]
+    },
+    {
+      "id": "lemon-herb-roast-chicken",
+      "title": "Lemon & Herb Roast Chicken",
+      "description": "A classic Sunday roast with crispy skin, lemon and thyme.",
+      "image": "assets/images/recipes/roast-chicken.jpg",
+      "altText": "Whole golden roast chicken in a roasting tin surrounded by lemon halves and sprigs of thyme",
+      "cookingTimeMinutes": 75,
+      "difficulty": "medium",
+      "vegetarian": false,
+      "featured": true,
+      "servings": 4,
+      "video": null,
+      "ingredients": [
+        { "name": "whole chicken", "quantity": 1.6, "unit": "kg" },
+        { "name": "lemon", "quantity": 1, "unit": null },
+        { "name": "garlic cloves", "quantity": 4, "unit": null },
+        { "name": "fresh thyme", "quantity": 5, "unit": "g" },
+        { "name": "butter, softened", "quantity": 40, "unit": "g" },
+        { "name": "olive oil", "quantity": 1, "unit": "tbsp" },
+        { "name": "sea salt", "quantity": 2, "unit": "tsp" }
+      ],
+      "steps": [
+        {
+          "text": "Heat the oven to 200°C (180°C fan). Take the chicken out of the fridge to come to room temperature.",
+          "timerSeconds": 1200
+        },
+        {
+          "text": "Mix the butter with the thyme leaves and rub it under and over the skin. Season well.",
+          "timerSeconds": null
+        },
+        {
+          "text": "Halve the lemon and put it inside the chicken with the garlic. Drizzle with olive oil.",
+          "timerSeconds": null
+        },
+        {
+          "text": "Roast until the juices run clear when the thickest part of the thigh is pierced.",
+          "timerSeconds": 4200
+        },
+        {
+          "text": "Rest the chicken under foil before carving.",
+          "timerSeconds": 900
+        }
+      ]
+    },
+    {
+      "id": "thai-green-curry",
+      "title": "Thai Green Curry",
+      "description": "Fragrant coconut curry with chicken, green beans and Thai basil.",
+      "image": "assets/images/recipes/thai-green-curry.jpeg",
+      "altText": "Bowl of pale green coconut curry with chicken pieces and green beans, beside a bowl of jasmine rice",
+      "cookingTimeMinutes": 35,
+      "difficulty": "medium",
+      "vegetarian": false,
+      "featured": false,
+      "servings": 4,
+      "video": null,
+      "ingredients": [
+        { "name": "vegetable oil", "quantity": 1, "unit": "tbsp" },
+        { "name": "green curry paste", "quantity": 3, "unit": "tbsp" },
+        { "name": "chicken thighs, sliced", "quantity": 500, "unit": "g" },
+        { "name": "coconut milk", "quantity": 400, "unit": "ml" },
+        { "name": "green beans, trimmed", "quantity": 150, "unit": "g" },
+        { "name": "fish sauce", "quantity": 1, "unit": "tbsp" },
+        { "name": "brown sugar", "quantity": 1, "unit": "tsp" },
+        { "name": "Thai basil", "quantity": 10, "unit": "g" }
+      ],
+      "steps": [
+        {
+          "text": "Fry the curry paste in the oil for 1 minute until fragrant.",
+          "timerSeconds": 60
+        },
+        {
+          "text": "Add the chicken and stir to coat in the paste. Cook until sealed all over.",
+          "timerSeconds": 300
+        },
+        {
+          "text": "Pour in the coconut milk, add the fish sauce and sugar, and simmer.",
+          "timerSeconds": 900
+        },
+        {
+          "text": "Add the green beans and cook until just tender.",
+          "timerSeconds": 300
+        },
+        {
+          "text": "Stir through the Thai basil and serve with jasmine rice.",
+          "timerSeconds": null
+        }
+      ]
+    },
+    {
+      "id": "spaghetti-aglio-olio",
+      "title": "Spaghetti Aglio e Olio",
+      "description": "Garlic, chilli and olive oil spaghetti. Dinner in 15 minutes from store-cupboard staples.",
+      "image": "assets/images/recipes/aglio-olio.jpeg",
+      "altText": "Twirl of glossy spaghetti flecked with sliced garlic, chilli flakes and parsley on a white plate",
+      "cookingTimeMinutes": 15,
+      "difficulty": "easy",
+      "vegetarian": true,
+      "featured": false,
+      "servings": 2,
+      "video": null,
+      "ingredients": [
+        { "name": "spaghetti", "quantity": 200, "unit": "g" },
+        { "name": "extra virgin olive oil", "quantity": 4, "unit": "tbsp" },
+        { "name": "garlic cloves, thinly sliced", "quantity": 4, "unit": null },
+        { "name": "chilli flakes", "quantity": 0.5, "unit": "tsp" },
+        { "name": "fresh parsley, chopped", "quantity": 10, "unit": "g" },
+        { "name": "salt", "quantity": 1, "unit": "pinch" }
+      ],
+      "steps": [
+        {
+          "text": "Cook the spaghetti in well-salted boiling water until al dente. Save a mug of the pasta water.",
+          "timerSeconds": 600
+        },
+        {
+          "text": "Meanwhile, gently warm the oil with the garlic and chilli until the garlic is pale golden.",
+          "timerSeconds": 180
+        },
+        {
+          "text": "Toss the drained spaghetti in the garlic oil with a splash of pasta water until glossy.",
+          "timerSeconds": null
+        },
+        {
+          "text": "Stir in the parsley and serve immediately.",
+          "timerSeconds": null
+        }
+      ]
+    },
+    {
+      "id": "teriyaki-salmon",
+      "title": "Teriyaki Salmon",
+      "description": "Sticky glazed salmon fillets with sesame and spring onion.",
+      "image": "assets/images/recipes/teriyaki-salmon.jpeg",
+      "altText": null,
+      "cookingTimeMinutes": 20,
+      "difficulty": "easy",
+      "vegetarian": false,
+      "featured": false,
+      "servings": 2,
+      "video": null,
+      "ingredients": [
+        { "name": "salmon fillets", "quantity": 2, "unit": null },
+        { "name": "soy sauce", "quantity": 3, "unit": "tbsp" },
+        { "name": "mirin", "quantity": 2, "unit": "tbsp" },
+        { "name": "honey", "quantity": 1, "unit": "tbsp" },
+        { "name": "fresh ginger, grated", "quantity": 1, "unit": "tsp" },
+        { "name": "sesame seeds", "quantity": 1, "unit": "tsp" },
+        { "name": "spring onions, sliced", "quantity": 2, "unit": null }
+      ],
+      "steps": [
+        {
+          "text": "Mix the soy sauce, mirin, honey and ginger to make the glaze.",
+          "timerSeconds": null
+        },
+        {
+          "text": "Fry the salmon skin-side down in a hot pan until crisp.",
+          "timerSeconds": 240
+        },
+        {
+          "text": "Flip the salmon, pour over the glaze and let it bubble until sticky.",
+          "timerSeconds": 180
+        },
+        {
+          "text": "Sprinkle with sesame seeds and spring onions and serve with rice.",
+          "timerSeconds": null
+        }
+      ]
+    },
+    {
+      "id": "chocolate-babka",
+      "title": "Chocolate Babka",
+      "description": "Swirled, buttery enriched bread with a rich chocolate filling.",
+      "image": "assets/images/recipes/chocolate-babka.jpeg",
+      "altText": "Sliced chocolate babka loaf showing dark chocolate swirls through soft golden bread",
+      "cookingTimeMinutes": 180,
+      "difficulty": "hard",
+      "vegetarian": true,
+      "featured": false,
+      "servings": 8,
+      "video": {
+        "file": "assets/videos/shaping-babka.mp4",
+        "title": "Video by Melina Strauss on how to twist and shape a babka",
+        "captions": "assets/videos/shaping-babka.vtt"
+      },
+      "ingredients": [
+        { "name": "strong white flour", "quantity": 500, "unit": "g" },
+        { "name": "fast-action yeast", "quantity": 7, "unit": "g" },
+        { "name": "caster sugar", "quantity": 75, "unit": "g" },
+        { "name": "eggs", "quantity": 3, "unit": null },
+        { "name": "whole milk, warm", "quantity": 120, "unit": "ml" },
+        { "name": "unsalted butter, softened", "quantity": 150, "unit": "g" },
+        { "name": "dark chocolate", "quantity": 130, "unit": "g" },
+        { "name": "cocoa powder", "quantity": 2, "unit": "tbsp" },
+        { "name": "icing sugar", "quantity": 50, "unit": "g" }
+      ],
+      "steps": [
+        {
+          "text": "Mix the flour, yeast, sugar, eggs and milk into a dough. Knead in the butter until smooth and elastic.",
+          "timerSeconds": 600
+        },
+        {
+          "text": "Cover and leave to rise until doubled in size.",
+          "timerSeconds": 5400
+        },
+        {
+          "text": "Melt the chocolate with the cocoa and icing sugar to make the filling.",
+          "timerSeconds": null
+        },
+        {
+          "text": "Roll the dough into a rectangle, spread with filling, roll up, cut in half lengthways and twist.",
+          "timerSeconds": null
+        },
+        {
+          "text": "Place in a lined loaf tin and prove again.",
+          "timerSeconds": 2700
+        },
+        {
+          "text": "Bake at 180°C (160°C fan) until deep golden.",
+          "timerSeconds": 2100
+        }
+      ]
+    },
+    {
+      "id": "red-lentil-dal",
+      "title": "Red Lentil Dal",
+      "description": "Creamy, comforting lentils with a sizzling spiced oil on top.",
+      "image": "assets/images/recipes/red-lentil-dal.jpeg",
+      "altText": "Bowl of creamy yellow lentil dal swirled with spiced oil and topped with fresh coriander",
+      "cookingTimeMinutes": 40,
+      "difficulty": "easy",
+      "vegetarian": true,
+      "featured": false,
+      "servings": 4,
+      "video": null,
+      "ingredients": [
+        { "name": "red lentils, rinsed", "quantity": 250, "unit": "g" },
+        { "name": "water", "quantity": 900, "unit": "ml" },
+        { "name": "ground turmeric", "quantity": 1, "unit": "tsp" },
+        { "name": "ghee or oil", "quantity": 2, "unit": "tbsp" },
+        { "name": "cumin seeds", "quantity": 1, "unit": "tsp" },
+        { "name": "garlic cloves, sliced", "quantity": 3, "unit": null },
+        { "name": "dried chilli", "quantity": 1, "unit": null },
+        { "name": "fresh coriander", "quantity": 10, "unit": "g" }
+      ],
+      "steps": [
+        {
+          "text": "Simmer the lentils with the water and turmeric, stirring now and then, until soft and creamy.",
+          "timerSeconds": 1500
+        },
+        {
+          "text": "Season the dal with salt and keep warm.",
+          "timerSeconds": null
+        },
+        {
+          "text": "Heat the ghee and fry the cumin seeds, garlic and chilli until the garlic turns golden.",
+          "timerSeconds": 120
+        },
+        {
+          "text": "Pour the sizzling oil over the dal, scatter with coriander and serve.",
+          "timerSeconds": null
+        }
+      ]
+    }
+  ]
+}
