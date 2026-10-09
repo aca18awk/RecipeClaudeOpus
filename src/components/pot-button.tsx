@@ -55,7 +55,7 @@ export function PotButton({ recipeTitle, saved, onPress, announce = true }: PotB
         styles.button,
         {
           backgroundColor: saved ? theme.tintSoft : 'transparent',
-          borderColor: saved ? theme.tint : theme.border,
+          borderColor: saved ? theme.tint : theme.borderStrong,
           opacity: pressed ? 0.7 : 1,
         },
       ]}>

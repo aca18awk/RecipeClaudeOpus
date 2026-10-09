@@ -59,9 +59,7 @@ export function FeaturedCarousel({ recipes }: { recipes: Recipe[] }) {
             <RecipeImage recipe={item} style={styles.image} decorative />
             {/* Solid scrim keeps the white title readable on any photo. */}
             <View style={styles.caption}>
-              <Text style={styles.captionTitle} numberOfLines={2}>
-                {item.title}
-              </Text>
+              <Text style={styles.captionTitle}>{item.title}</Text>
               <Text style={styles.captionMeta}>
                 {formatMinutes(item.cookingTimeMinutes)} · {DIFFICULTY_LABELS[item.difficulty]}
               </Text>
@@ -101,8 +99,10 @@ const styles = StyleSheet.create({
   listContent: {
     paddingHorizontal: Spacing.three,
   },
+  // minHeight + in-flow caption: the card grows with large text instead of clipping it.
   item: {
-    height: 210,
+    minHeight: 210,
+    justifyContent: 'flex-end',
     borderRadius: Radius.large,
     overflow: 'hidden',
   },
@@ -112,10 +112,6 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   caption: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
     paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.two + 2,
     backgroundColor: 'rgba(0, 0, 0, 0.62)',

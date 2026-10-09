@@ -297,7 +297,7 @@ export default function AddRecipeScreen() {
                   style={({ pressed }) => [
                     styles.segment,
                     {
-                      borderColor: selected ? theme.tint : theme.border,
+                      borderColor: selected ? theme.tint : theme.borderStrong,
                       backgroundColor: selected ? theme.tint : theme.backgroundElement,
                       opacity: pressed ? 0.75 : 1,
                     },
@@ -313,12 +313,20 @@ export default function AddRecipeScreen() {
         </View>
 
         <View style={[styles.switchRow, { borderColor: theme.border, backgroundColor: theme.backgroundElement }]}>
-          <Text style={[styles.label, { color: theme.text }]}>Vegetarian</Text>
+          {/* Tapping the label toggles too, giving a larger target. The switch
+              itself is the single control screen readers focus. */}
+          <Pressable
+            onPress={() => setVegetarian((current) => !current)}
+            accessible={false}
+            importantForAccessibility="no"
+            style={styles.switchLabel}>
+            <Text style={[styles.label, { color: theme.text }]}>Vegetarian</Text>
+          </Pressable>
           <Switch
             value={vegetarian}
             onValueChange={setVegetarian}
             accessibilityLabel="Vegetarian"
-            trackColor={{ true: theme.tint, false: theme.border }}
+            trackColor={{ true: theme.tint, false: theme.borderStrong }}
             thumbColor={Platform.OS === 'android' ? theme.backgroundElement : undefined}
           />
         </View>
@@ -350,8 +358,7 @@ export default function AddRecipeScreen() {
                 onChangeText={(text) => setIngredient(row.key, text)}
                 placeholder={index === 0 ? 'e.g. 200 g flour' : 'Another ingredient'}
                 placeholderTextColor={theme.textSecondary}
-                accessibilityLabel={`Ingredient ${index + 1}`}
-                accessibilityHint={index === 0 && errors.ingredients ? errors.ingredients : undefined}
+                accessibilityLabel={`Ingredient ${index + 1}${index === 0 && errors.ingredients ? `. Error: ${errors.ingredients}` : ''}`}
                 returnKeyType={index === values.ingredients.length - 1 ? 'done' : 'next'}
                 onSubmitEditing={() => {
                   const next = values.ingredients[index + 1];
@@ -364,7 +371,7 @@ export default function AddRecipeScreen() {
                   {
                     color: theme.text,
                     backgroundColor: theme.backgroundElement,
-                    borderColor: errors.ingredients ? theme.danger : theme.border,
+                    borderColor: errors.ingredients ? theme.danger : theme.borderStrong,
                   },
                 ]}
               />
@@ -417,14 +424,14 @@ function FormField({ label, required = false, error, inputRef, style, ...inputPr
       <TextInput
         ref={inputRef}
         placeholderTextColor={theme.textSecondary}
-        accessibilityLabel={`${label}, ${required ? 'required' : 'optional'}`}
-        accessibilityHint={error}
+        // The error is part of the label, not just a hint: users can turn hints off.
+        accessibilityLabel={`${label}, ${required ? 'required' : 'optional'}${error ? `. Error: ${error}` : ''}`}
         style={[
           styles.input,
           {
             color: theme.text,
             backgroundColor: theme.backgroundElement,
-            borderColor: error ? theme.danger : theme.border,
+            borderColor: error ? theme.danger : theme.borderStrong,
             borderWidth: error ? 2 : 1.5,
           },
         ]}
@@ -529,6 +536,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.three - 4,
     borderWidth: 1.5,
     borderRadius: Radius.small + 2,
+  },
+  switchLabel: {
+    flex: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
   },
   ingredientRow: {
     flexDirection: 'row',

@@ -50,10 +50,10 @@ export function RecipeCard({ recipe, action, accessibilityActions = [] }: Recipe
         }}
         style={({ pressed }) => [styles.main, { opacity: pressed ? 0.75 : 1 }]}>
         <RecipeImage recipe={recipe} style={styles.image} decorative />
-        <View style={styles.info}>
-          <Text style={[styles.title, { color: theme.text }]} numberOfLines={2}>
-            {recipe.title}
-          </Text>
+        {/* The card's label already covers these; hiding them stops TalkBack
+            stopping on the nested difficulty badge. */}
+        <View style={styles.info} importantForAccessibility="no-hide-descendants">
+          <Text style={[styles.title, { color: theme.text }]}>{recipe.title}</Text>
           <View style={styles.metaRow}>
             <ClockIcon color={theme.textSecondary} size={15} />
             <Text style={[styles.meta, { color: theme.textSecondary }]}>

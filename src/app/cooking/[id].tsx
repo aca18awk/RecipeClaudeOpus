@@ -18,9 +18,11 @@ import { AppButton } from '@/components/app-button';
 import { EmptyState } from '@/components/empty-state';
 import { ClockIcon } from '@/components/icons';
 import { Radius, Spacing } from '@/constants/theme';
+import { useLargeText } from '@/hooks/use-large-text';
 import { useTheme } from '@/hooks/use-theme';
 import { useRecipes } from '@/state/recipes-context';
 import type { Step } from '@/types/recipe';
+import { announce } from '@/utils/announce';
 import { formatClock, spokenSeconds } from '@/utils/format';
 
 type TimerState = {
@@ -50,6 +52,7 @@ export default function CookingModeScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
+  const largeText = useLargeText();
   const recipe = useRecipes().getRecipe(id);
   const steps = recipe?.steps ?? [];
 
@@ -117,9 +120,8 @@ export default function CookingModeScreen() {
 
   const goTo = (index: number) => {
     setStepIndex(index);
-    AccessibilityInfo.announceForAccessibility(
-      `Step ${index + 1} of ${steps.length}. ${steps[index].text}`
-    );
+    // Queued so VoiceOver doesn't cut it off when re-reading the Next/Finish button.
+    announce(`Step ${index + 1} of ${steps.length}. ${steps[index].text}`);
   };
 
   const updateTimer = (index: number, update: (timer: TimerState) => TimerState) =>
@@ -206,6 +208,8 @@ export default function CookingModeScreen() {
             </Text>
             <Text
               style={[styles.timerValue, { color: timer.finished ? theme.tint : theme.text }]}
+              // Already 56pt; uncapped it would overflow the card at the largest text sizes.
+              maxFontSizeMultiplier={1.6}
               accessibilityLabel={
                 timer.finished
                   ? 'Timer finished'
@@ -213,21 +217,21 @@ export default function CookingModeScreen() {
               }>
               {formatClock(secondsLeft(timer, now))}
             </Text>
-            <View style={styles.timerButtons}>
+            <View style={[styles.timerButtons, largeText && styles.stacked]}>
               {timer.endAt ? (
                 <AppButton
                   label="Pause"
                   variant="secondary"
                   onPress={() => pauseTimer(stepIndex)}
                   accessibilityLabel="Pause timer"
-                  style={styles.timerButton}
+                  style={!largeText && styles.timerButton}
                 />
               ) : (
                 <AppButton
                   label={startLabel}
                   onPress={() => startTimer(stepIndex)}
                   accessibilityLabel={`${startLabel.replace(' timer', '')} timer`}
-                  style={styles.timerButton}
+                  style={!largeText && styles.timerButton}
                 />
               )}
               <AppButton
@@ -235,7 +239,7 @@ export default function CookingModeScreen() {
                 variant="ghost"
                 onPress={() => resetTimer(stepIndex)}
                 accessibilityLabel="Reset timer"
-                style={styles.timerButton}
+                style={!largeText && styles.timerButton}
               />
             </View>
           </View>
@@ -245,6 +249,7 @@ export default function CookingModeScreen() {
       <View
         style={[
           styles.footer,
+          largeText && styles.stacked,
           {
             borderTopColor: theme.border,
             paddingBottom: insets.bottom + Spacing.two,
@@ -257,14 +262,14 @@ export default function CookingModeScreen() {
           onPress={() => goTo(stepIndex - 1)}
           disabled={isFirst}
           accessibilityLabel="Previous step"
-          style={styles.footerButton}
+          style={!largeText && styles.footerButton}
         />
         <AppButton
           label={isLast ? 'Finish' : 'Next'}
           size="large"
           onPress={() => (isLast ? router.back() : goTo(stepIndex + 1))}
           accessibilityLabel={isLast ? 'Finish cooking' : 'Next step'}
-          style={styles.footerButton}
+          style={!largeText && styles.footerButton}
         />
       </View>
     </View>
@@ -352,5 +357,8 @@ const styles = StyleSheet.create({
   },
   footerButton: {
     flex: 1,
+  },
+  stacked: {
+    flexDirection: 'column',
   },
 });

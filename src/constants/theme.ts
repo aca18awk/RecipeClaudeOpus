@@ -15,6 +15,8 @@ export const Colors = {
     backgroundSelected: '#F1E9E1',
     textSecondary: '#5E554F',
     border: '#D9CEC4',
+    /** Edges of inputs and controls; meets 3:1 non-text contrast (WCAG 1.4.11). */
+    borderStrong: '#857970',
     tint: '#A8401A',
     onTint: '#FFFFFF',
     tintSoft: '#F8E3D8',
@@ -41,6 +43,7 @@ export const Colors = {
     backgroundSelected: '#302925',
     textSecondary: '#C2B7AE',
     border: '#4A403A',
+    borderStrong: '#8A7D74',
     tint: '#F49A70',
     onTint: '#1F1A17',
     tintSoft: '#45291D',
@@ -109,5 +112,8 @@ export const Radius = {
 
 /** Minimum touch target size (Android recommends 48dp, iOS 44pt). */
 export const MinTouchSize = 48;
+
+/** System text-size multiplier above which side-by-side layouts stack vertically. */
+export const LargeTextScale = 1.35;
 
 export const MaxContentWidth = 800;

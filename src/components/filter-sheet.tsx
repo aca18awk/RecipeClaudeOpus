@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -5,8 +6,10 @@ import { AppButton } from '@/components/app-button';
 import { Chip } from '@/components/chip';
 import { CloseIcon } from '@/components/icons';
 import { MinTouchSize, Radius, Spacing } from '@/constants/theme';
+import { useLargeText } from '@/hooks/use-large-text';
 import { useTheme } from '@/hooks/use-theme';
 import { DIFFICULTIES, EMPTY_FILTERS, type Difficulty, type RecipeFilters } from '@/types/recipe';
+import { announce } from '@/utils/announce';
 import { DIFFICULTY_LABELS } from '@/utils/format';
 
 type FilterSheetProps = {
@@ -21,6 +24,16 @@ type FilterSheetProps = {
 export function FilterSheet({ visible, filters, resultCount, onChange, onClose }: FilterSheetProps) {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
+  const largeText = useLargeText();
+
+  // The result count on the screen behind the modal can't be heard, so speak it here.
+  const announcedCount = useRef(resultCount);
+  useEffect(() => {
+    if (visible && resultCount !== announcedCount.current) {
+      announce(`${resultCount} ${resultCount === 1 ? 'recipe' : 'recipes'} match`);
+    }
+    announcedCount.current = resultCount;
+  }, [visible, resultCount]);
 
   const toggleDifficulty = (difficulty: Difficulty) => {
     const difficulties = filters.difficulties.includes(difficulty)
@@ -98,17 +111,17 @@ export function FilterSheet({ visible, filters, resultCount, onChange, onClose }
             </View>
           </ScrollView>
 
-          <View style={styles.footer}>
+          <View style={[styles.footer, largeText && styles.footerStacked]}>
             <AppButton
               label="Clear all"
               variant="secondary"
               onPress={() => onChange(EMPTY_FILTERS)}
-              style={styles.footerButton}
+              style={!largeText && styles.footerButton}
             />
             <AppButton
               label={`Show ${resultCount} ${resultCount === 1 ? 'recipe' : 'recipes'}`}
               onPress={onClose}
-              style={styles.footerButton}
+              style={!largeText && styles.footerButton}
             />
           </View>
         </View>
@@ -174,6 +187,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: Spacing.two,
     paddingTop: Spacing.three,
+  },
+  footerStacked: {
+    flexDirection: 'column',
   },
   footerButton: {
     flex: 1,

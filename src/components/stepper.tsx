@@ -43,12 +43,20 @@ export function Stepper({ label, value, min, max, onChange, formatValue }: Stepp
         if (event.nativeEvent.actionName === 'decrement') step(-1);
       }}>
       <Text style={[styles.label, { color: theme.text }]}>{label}</Text>
-      <View style={[styles.control, { borderColor: theme.border, backgroundColor: theme.backgroundElement }]}>
-        <StepButton onPress={() => step(-1)} disabled={!canDecrement}>
+      <View style={[styles.control, { borderColor: theme.borderStrong, backgroundColor: theme.backgroundElement }]}>
+        <StepButton
+          onPress={() => step(-1)}
+          disabled={!canDecrement}
+          accessibilityLabel={`Decrease ${label.toLowerCase()}`}>
           <MinusIcon color={theme.tint} size={18} />
         </StepButton>
-        <Text style={[styles.value, { color: theme.text }]}>{value}</Text>
-        <StepButton onPress={() => step(1)} disabled={!canIncrement}>
+        <Text style={[styles.value, { color: theme.text }]} maxFontSizeMultiplier={2}>
+          {value}
+        </Text>
+        <StepButton
+          onPress={() => step(1)}
+          disabled={!canIncrement}
+          accessibilityLabel={`Increase ${label.toLowerCase()}`}>
           <PlusIcon color={theme.tint} size={18} />
         </StepButton>
       </View>
@@ -56,19 +64,25 @@ export function Stepper({ label, value, min, max, onChange, formatValue }: Stepp
   );
 }
 
+/** Labelled for keyboard, switch and web users; VoiceOver uses the adjustable parent. */
 function StepButton({
   onPress,
   disabled,
+  accessibilityLabel,
   children,
 }: {
   onPress: () => void;
   disabled: boolean;
+  accessibilityLabel: string;
   children: ReactNode;
 }) {
   return (
     <Pressable
       onPress={onPress}
       disabled={disabled}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
+      accessibilityState={{ disabled }}
       style={({ pressed }) => [
         styles.button,
         { opacity: disabled ? 0.35 : pressed ? 0.6 : 1 },

@@ -13,6 +13,7 @@ import { RecipeImage } from '@/components/recipe-image';
 import { RecipeVideo } from '@/components/recipe-video';
 import { Stepper } from '@/components/stepper';
 import { MinTouchSize, Radius, Spacing } from '@/constants/theme';
+import { useLargeText } from '@/hooks/use-large-text';
 import { useTheme } from '@/hooks/use-theme';
 import { useRecipes } from '@/state/recipes-context';
 import { useToast } from '@/state/toast-context';
@@ -24,6 +25,7 @@ export default function RecipeDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
+  const largeText = useLargeText();
   const { getRecipe, isSaved, toggleSaved, addToShoppingList } = useRecipes();
   const { showToast } = useToast();
   const recipe = getRecipe(id);
@@ -178,6 +180,7 @@ export default function RecipeDetailScreen() {
       <View
         style={[
           styles.footer,
+          largeText && styles.footerStacked,
           {
             backgroundColor: theme.background,
             borderTopColor: theme.border,
@@ -188,14 +191,14 @@ export default function RecipeDetailScreen() {
           label="Add to shopping list"
           variant="secondary"
           onPress={addAllToShoppingList}
-          style={styles.footerButton}
+          style={!largeText && styles.footerButton}
         />
         <AppButton
           label="Start cooking"
           onPress={() => router.push({ pathname: '/cooking/[id]', params: { id: recipe.id } })}
           disabled={!hasSteps}
           accessibilityHint={hasSteps ? 'Shows the steps one at a time' : 'This recipe has no steps'}
-          style={styles.footerButton}
+          style={!largeText && styles.footerButton}
         />
       </View>
     </View>
@@ -290,6 +293,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.three,
     paddingTop: Spacing.three - 4,
     borderTopWidth: StyleSheet.hairlineWidth,
+  },
+  footerStacked: {
+    flexDirection: 'column',
   },
   footerButton: {
     flex: 1,

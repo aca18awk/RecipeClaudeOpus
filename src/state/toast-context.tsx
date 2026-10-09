@@ -1,10 +1,11 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import { AccessibilityInfo, Animated, StyleSheet, Text } from 'react-native';
+import { Animated, StyleSheet, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Radius, Spacing } from '@/constants/theme';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import { useTheme } from '@/hooks/use-theme';
+import { announce } from '@/utils/announce';
 
 const TOAST_DURATION_MS = 3000;
 /** Keeps the toast clear of tab bars and sticky footers. */
@@ -21,7 +22,8 @@ export function ToastProvider({ children }: { children: ReactNode }) {
 
   const showToast = (message: string) => {
     setToast({ message, key: Date.now() });
-    AccessibilityInfo.announceForAccessibility(message);
+    // Queued so it survives the screen change that often follows (e.g. after saving).
+    announce(message);
   };
 
   return (

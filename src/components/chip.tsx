@@ -26,7 +26,7 @@ export function Chip({ label, selected, onPress, accessibilityHint }: ChipProps)
         styles.chip,
         {
           backgroundColor: selected ? theme.tint : theme.backgroundElement,
-          borderColor: selected ? theme.tint : theme.border,
+          borderColor: selected ? theme.tint : theme.borderStrong,
           opacity: pressed ? 0.8 : 1,
         },
       ]}>

@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { Animated, Pressable, StyleSheet, Text } from 'react-native';
+import { AccessibilityInfo, Animated, Pressable, StyleSheet, Text } from 'react-native';
 
 import { MinTouchSize, Radius, Spacing } from '@/constants/theme';
-import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import { useTheme } from '@/hooks/use-theme';
+
+const SCREEN_READER_MIN_MS = 20000;
 
 type SnackbarProps = {
   message: string;
@@ -17,8 +18,7 @@ type SnackbarProps = {
 /** Message with a single action that dismisses itself after `durationMs`. */
 export function Snackbar({ message, actionLabel, onAction, onDismiss, durationMs }: SnackbarProps) {
   const theme = useTheme();
-  const reducedMotion = useReducedMotion();
-  const [translateY] = useState(() => new Animated.Value(reducedMotion ? 0 : 80));
+  const [translateY] = useState(() => new Animated.Value(80));
 
   const onDismissRef = useRef(onDismiss);
   useEffect(() => {
@@ -26,9 +26,30 @@ export function Snackbar({ message, actionLabel, onAction, onDismiss, durationMs
   });
 
   useEffect(() => {
-    Animated.spring(translateY, { toValue: 0, friction: 8, useNativeDriver: true }).start();
-    const timeout = setTimeout(() => onDismissRef.current(), durationMs);
-    return () => clearTimeout(timeout);
+    let cancelled = false;
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+
+    AccessibilityInfo.isReduceMotionEnabled().then((reduce) => {
+      if (cancelled) return;
+      if (reduce) translateY.setValue(0);
+      else Animated.spring(translateY, { toValue: 0, friction: 8, useNativeDriver: true }).start();
+    });
+
+    // Screen reader users need longer to reach the action (WCAG 2.2.1); Android
+    // also lets users choose a longer "time to take action".
+    Promise.all([
+      AccessibilityInfo.isScreenReaderEnabled(),
+      AccessibilityInfo.getRecommendedTimeoutMillis(durationMs),
+    ]).then(([screenReader, recommended]) => {
+      if (cancelled) return;
+      const duration = screenReader ? Math.max(recommended, SCREEN_READER_MIN_MS) : recommended;
+      timeout = setTimeout(() => onDismissRef.current(), duration);
+    });
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timeout);
+    };
   }, [durationMs, translateY]);
 
   return (
@@ -37,9 +58,7 @@ export function Snackbar({ message, actionLabel, onAction, onDismiss, durationMs
         styles.snackbar,
         { backgroundColor: theme.inverseBackground, transform: [{ translateY }] },
       ]}>
-      <Text style={[styles.message, { color: theme.inverseText }]} numberOfLines={2}>
-        {message}
-      </Text>
+      <Text style={[styles.message, { color: theme.inverseText }]}>{message}</Text>
       <Pressable
         onPress={onAction}
         accessibilityRole="button"

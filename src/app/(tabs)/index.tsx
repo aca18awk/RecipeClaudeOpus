@@ -65,7 +65,7 @@ export default function HomeScreen() {
         <View
           style={[
             styles.searchField,
-            { backgroundColor: theme.backgroundElement, borderColor: theme.border },
+            { backgroundColor: theme.backgroundElement, borderColor: theme.borderStrong },
           ]}>
           <SearchIcon color={theme.textSecondary} size={20} />
           <TextInput
@@ -101,14 +101,17 @@ export default function HomeScreen() {
             styles.filterButton,
             {
               backgroundColor: activeFilterCount > 0 ? theme.tint : theme.backgroundElement,
-              borderColor: activeFilterCount > 0 ? theme.tint : theme.border,
+              borderColor: activeFilterCount > 0 ? theme.tint : theme.borderStrong,
               opacity: pressed ? 0.75 : 1,
             },
           ]}>
           <FilterIcon color={activeFilterCount > 0 ? theme.onTint : theme.text} size={20} />
           {activeFilterCount > 0 ? (
             <View style={[styles.filterCount, { backgroundColor: theme.onTint }]}>
-              <Text style={[styles.filterCountText, { color: theme.tint }]}>
+              {/* Capped: the badge sits inside a fixed-size button; the count is in its label. */}
+              <Text
+                style={[styles.filterCountText, { color: theme.tint }]}
+                maxFontSizeMultiplier={1.5}>
                 {activeFilterCount}
               </Text>
             </View>

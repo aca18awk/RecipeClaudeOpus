@@ -54,8 +54,7 @@ export function AppButton({
       ]}>
       {icon ? <View importantForAccessibility="no-hide-descendants">{icon}</View> : null}
       <Text
-        style={[styles.label, size === 'large' && styles.largeLabel, { color: palette.text }]}
-        numberOfLines={2}>
+        style={[styles.label, size === 'large' && styles.largeLabel, { color: palette.text }]}>
         {label}
       </Text>
     </Pressable>
